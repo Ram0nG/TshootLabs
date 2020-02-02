@@ -1,5 +1,5 @@
   The following scenario introduced the trouble tickets:
-	You work for School Networking. and a University. is a customer of your company.
+	You work for a School as a Network Admin and a University is a customer of your company.
 	Dano, the customer engineer, has sent you an email, asking for your help.
 	• The senior customer engineer noticed that GW1 only has one OSPF neighbor, GW2.
 	This engineer has asked Dano why GW1 does not have an adjacency with R1.
