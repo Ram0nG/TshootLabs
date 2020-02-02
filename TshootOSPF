@@ -1,0 +1,16 @@
+  The following scenario introduced the trouble tickets:
+	You work for School Networking. and a University. is a customer of your company.
+	Dano, the customer engineer, has sent you an email, asking for your help.
+	• The senior customer engineer noticed that GW1 only has one OSPF neighbor, GW2.
+	This engineer has asked Dano why GW1 does not have an adjacency with R1.
+	Dano needs your help in solving this issue. He does not have the expertise to
+  tackle this issue.
+	• Dano has configured all the routers in the network with remote access via 
+  SSH version 2.
+	Now when he tests connectivity from his PC, PC4, he can access GW1, GW2, and R1,
+  but not R2.
+	The connection is refused and Dano is requesting you help in investigating
+  the reason for this failure.
+	• Routers R1 and R2 keep complaining about a duplicate IP address.
+	Dano does not know the cause of this issue. He insists that this failure is
+  an IOS bug since all PCs have proper Internet connectivity.
