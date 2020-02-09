@@ -1,0 +1,180 @@
+• R1
+  R1#show run
+  Building configuration...
+
+  Current configuration : 2611 bytes
+  !
+  version 15.2
+  service timestamps debug datetime msec
+  service timestamps log datetime msec
+  service password-encryption
+  !
+  hostname R1
+  !
+  boot-start-marker
+  boot-end-marker
+  !
+  !
+  no logging console
+  enable secret 4 1KT4Bo0GCWMSVl.gNwzJ8kInGfbKjQZeCtLzoTxuOXM
+  !
+  aaa new-model
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  aaa session-id common
+  clock timezone PST -8 0
+  mmi polling-interval 60
+  no mmi auto-configure
+  no mmi pvc
+  mmi snmp-timeout 180
+  !
+  !
+  !
+  !
+
+
+  !
+  ip dhcp excluded-address 10.0.11.1 10.0.11.10
+  ip dhcp excluded-address 10.0.22.1 10.0.22.10
+  ip dhcp excluded-address 10.0.11.128 10.0.11.255
+  ip dhcp excluded-address 10.0.22.128 10.0.22.255
+  ip dhcp excluded-address 10.0.33.1 10.0.33.10
+  ip dhcp excluded-address 10.0.44.1 10.0.44.10
+  ip dhcp excluded-address 10.0.33.128 10.0.33.255
+  ip dhcp excluded-address 10.0.44.128 10.0.44.255
+  !
+  ip dhcp pool VLAN11_CLIENTS
+   network 10.0.11.0 255.255.255.0
+   default-router 10.0.11.1
+  !
+  ip dhcp pool VLAN22_CLIENTS
+   network 10.0.22.0 255.255.255.0
+   default-router 10.0.22.1
+  !
+  ip dhcp pool VLAN33_CLIENTS
+   network 10.0.33.0 255.255.255.0
+   default-router 10.0.33.1
+  !
+  ip dhcp pool VLAN44_CLIENTS
+   network 10.0.44.0 255.255.255.0
+   default-router 10.0.44.1
+  !
+  !
+  !
+  ip domain name cisco.com
+  ip cef
+  no ipv6 cef
+  !
+  multilink bundle-name authenticated
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  username admin password 7 020555480856
+  !
+  redundancy
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  interface Loopback0
+   ip address 10.0.1.8 255.255.255.255
+  !
+  interface Ethernet0/0
+   ip address 10.0.10.21 255.255.255.252
+  !
+  interface Ethernet0/1
+   no ip address
+   shutdown
+  !
+  interface Ethernet0/2
+   no ip address
+   shutdown
+  !
+  interface Ethernet0/3
+   ip address 10.0.10.25 255.255.255.252
+  !
+  interface Ethernet1/0
+   no ip address
+  !
+  interface Ethernet1/0.11
+   encapsulation dot1Q 11
+   ip address 10.0.11.2 255.255.255.0
+   no ip redirects
+   vrrp 1 ip 10.0.11.1
+   vrrp 1 authentication md5 key-string 7 03070A18055F
+  !
+  interface Ethernet1/0.22
+   encapsulation dot1Q 22
+   ip address 10.0.22.2 255.255.255.0
+   vrrp 2 ip 10.0.22.1
+   vrrp 2 priority 110
+   vrrp 2 authentication md5 key-string 7 110A48161442
+  !
+  interface Ethernet1/1
+   ip address 10.0.33.2 255.255.255.0
+   vrrp 3 ip 10.0.33.1
+   vrrp 3 priority 110
+   vrrp 3 authentication c1sc0
+  !
+  interface Ethernet1/2
+   ip address 10.0.44.2 255.255.255.0
+   vrrp 4 ip 10.0.44.1
+   vrrp 4 priority 110
+   vrrp 4 authentication md5 key-string 7 00074215070B
+  !
+  interface Ethernet1/3
+   no ip address
+   shutdown
+  !
+  router ospf 1
+   network 10.0.0.0 0.255.255.255 area 0
+  !
+  ip forward-protocol nd
+  !
+  !
+  no ip http server
+  no ip http secure-server
+  !
+  !
+  !
+  !
+  !
+  !
+  control-plane
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  line con 0
+   logging synchronous
+  line aux 0
+  line vty 0 4
+   transport input ssh
+  !
+  !
+  end
+
+  R1

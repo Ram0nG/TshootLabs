@@ -1,0 +1,138 @@
+• GW2
+  GW2#sh run
+  Building configuration...
+
+  Current configuration : 1584 bytes
+  !
+  version 15.2
+  service timestamps debug datetime msec
+  service timestamps log datetime msec
+  service password-encryption
+  !
+  hostname GW2
+  !
+  boot-start-marker
+  boot-end-marker
+  !
+  !
+  enable secret 4 1KT4Bo0GCWMSVl.gNwzJ8kInGfbKjQZeCtLzoTxuOXM
+  !
+  aaa new-model
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  aaa session-id common
+  clock timezone PST -8 0
+  mmi polling-interval 60
+  no mmi auto-configure
+  no mmi pvc
+  mmi snmp-timeout 180
+  !
+  !
+  !
+  !
+
+
+  !
+  !
+  !
+  !
+  ip domain name cisco.com
+  ip cef
+  no ipv6 cef
+  !
+  multilink bundle-name authenticated
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  username admin password 7 01105717585B
+  !
+  redundancy
+  !
+  !
+  ip ssh version 2
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  interface Loopback0
+   ip address 10.0.1.11 255.255.255.255
+  !
+  interface Ethernet0/0
+   ip address 10.0.10.34 255.255.255.252
+   ip nat inside
+   ip virtual-reassembly in
+  !
+  interface Ethernet0/1
+   ip address 209.165.201.5 255.255.255.252
+   ip nat outside
+   ip virtual-reassembly in
+   no cdp enable
+  !
+  interface Ethernet0/2
+   no ip address
+   shutdown
+  !
+  interface Ethernet0/3
+   ip address 10.0.10.30 255.255.255.252
+   ip nat inside
+   ip virtual-reassembly in
+  !
+  router ospf 1
+   network 10.0.0.0 0.255.255.255 area 0
+   default-information originate
+  !
+  router bgp 65000
+   bgp log-neighbor-changes
+   neighbor 10.0.10.33 remote-as 65000
+   neighbor 10.0.10.33 next-hop-self
+   neighbor 209.165.201.6 remote-as 65535
+  !
+  ip forward-protocol nd
+  !
+  !
+  no ip http server
+  no ip http secure-server
+  ip nat inside source list 2 interface Ethernet0/1 overload
+  !
+  access-list 2 permit 10.0.0.0 0.255.255.255
+  !
+  !
+  !
+  !
+  !
+  control-plane
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  line con 0
+   logging synchronous
+  line aux 0
+  line vty 0 4
+   transport input ssh
+  !
+  !
+  end
+
+  GW2#
